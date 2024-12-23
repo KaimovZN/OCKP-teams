@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Генератор футбольных команд</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container py-5">
+        <h1 class="text-center mb-4">Генератор футбольных команд</h1>
+
+        <!-- Секция управления игроками -->
+        <div class="card mb-4">
+            <div class="card-header">Управление игроками</div>
+            <div class="card-body">
+                <form id="player-form" class="row g-3">
+                    <div class="col-md-3">
+                        <input type="text" id="player-name" class="form-control" placeholder="Имя игрока" required>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="number" id="player-attack" class="form-control" placeholder="Атака (1-10)" min="1" max="10" required>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="number" id="player-midfield" class="form-control" placeholder="Полузащита (1-10)" min="1" max="10" required>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="number" id="player-defense" class="form-control" placeholder="Защита (1-10)" min="1" max="10" required>
+                    </div>
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary">Добавить игрока</button>
+                    </div>
+                </form>
+                <hr>
+                <ul id="player-list" class="list-group"></ul>
+            </div>
+        </div>
+
+        <!-- Секция создания команд -->
+        <div class="card">
+            <div class="card-header">Создание команд</div>
+            <div class="card-body">
+                <div class="row g-3 align-items-center">
+                    <div class="col-md-4">
+                        <label for="num-teams" class="form-label">Количество команд:</label>
+                        <input type="number" id="num-teams" class="form-control" min="2" required>
+                    </div>
+                    <div class="col-md-8">
+                        <button id="create-teams" class="btn btn-success">Создать команды</button>
+                    </div>
+                </div>
+                <hr>
+                <div id="teams-container" class="mt-4"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно для редактирования игрока -->
+    <div id="edit-modal" class="modal" style="display:none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Редактировать игрока</h5>
+                    <button type="button" class="btn-close" onclick="closeEditModal()"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="edit-form">
+                        <input type="hidden" id="edit-index">
+                        <div class="mb-3">
+                            <label for="edit-name" class="form-label">Имя</label>
+                            <input type="text" id="edit-name" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-attack" class="form-label">Атака</label>
+                            <input type="number" id="edit-attack" class="form-control" min="1" max="10" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-midfield" class="form-label">Полузащита</label>
+                            <input type="number" id="edit-midfield" class="form-control" min="1" max="10" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-defense" class="form-label">Защита</label>
+                            <input type="number" id="edit-defense" class="form-control" min="1" max="10" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Сохранить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
